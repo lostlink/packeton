@@ -61,10 +61,10 @@ See our [Administration Demo](https://pkg.okvpn.org). Username/password (admin/c
 Install and Run in Docker
 ------------------------
 
-Pull the image from docker hub https://hub.docker.com/r/okvpn/packeton:
+Pull the image from docker hub https://hub.docker.com/r/lostlink/packeton:
 
 ```
-docker pull okvpn/packeton
+docker pull lostlink/packeton
 ```
 
 Run the image (with docker-composer):
@@ -74,7 +74,7 @@ version: '3'
 
 services:
     packagist:
-        image: okvpn/packeton:latest
+        image: lostlink/packeton:latest
         container_name: packagist
         restart: unless-stopped
         hostname: packagist
@@ -107,10 +107,10 @@ For example to enable ssl.
 server {
     listen *:443 ssl http2;
 
-    server_name pkg.okvpn.org;
+    server_name pkg.lostlink.net;
 
-    ssl_certificate /etc/letsencrypt/live/pkg.okvpn.org/fullchain.pem;
-    ssl_certificate_key /etc/letsencrypt/live/pkg.okvpn.org/privkey.pem;
+    ssl_certificate /etc/letsencrypt/live/pkg.lostlink.net/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/pkg.lostlink.net/privkey.pem;
     ssl_dhparam /etc/nginx/ssl/dh.pem;
     ssl_ciphers 'ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:ECDHE-RSA-AES256-SHA:ECDHE-RSA-AES128-SHA:ECDHE-RSA-DES-CBC3-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:DES-CBC3-SHA:!aNULL:!eNULL:!EXPORT:!DES:!MD5:!PSK:!RC4';
  
@@ -139,13 +139,13 @@ server {
 }
 
 server {
-    if ($host = pkg.okvpn.org) {
+    if ($host = pkg.lostlink.net) {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 
     listen 80;
     return 301 https://$host$request_uri;
-    server_name pkg.okvpn.org;
+    server_name pkg.lostlink.net;
 }
 ```
 
@@ -310,7 +310,7 @@ Add a new hook. Enter `https://<app>/api/github?token=user:token` as URL.
 
 If you do not use Bitbucket or GitHub there is a generic endpoint you can call manually 
 from a git post-receive hook or similar. You have to do a POST request to 
-`https://pkg.okvpn.org/api/update-package?token=user:api_token` with a request body looking like this:
+`https://pkg.lostlink.net/api/update-package?token=user:api_token` with a request body looking like this:
 
 ```
 {
@@ -337,7 +337,7 @@ see [ApiController](src/Packagist/WebBundle/Controller/ApiController.php#L348)
 You can do this using curl for example:
 
 ```
-curl -XPOST -H 'content-type:application/json' 'https://pkg.okvpn.org/api/update-package?token=user:api_token' -d' {"repository":{"url":"PACKAGIST_PACKAGE_URL"}}'
+curl -XPOST -H 'content-type:application/json' 'https://pkg.lostlink.net/api/update-package?token=user:api_token' -d' {"repository":{"url":"PACKAGIST_PACKAGE_URL"}}'
 ```
 
 Instead of using repo url you can use directly composer package name. 
@@ -346,7 +346,7 @@ You have to do a POST request with a request body.
 ```
 {
   "composer": {
-    "package_name": "okvpn/test"
+    "package_name": "lostlink/test"
   }
 }
 ```
@@ -354,7 +354,7 @@ You have to do a POST request with a request body.
 ```
 {
   "composer": {
-    "package_name": ["okvpn/test", "okvpn/pack2"]
+    "package_name": ["lostlink/test", "lostlink/pack2"]
   }
 }
 ```
@@ -375,14 +375,14 @@ For example, if the input request has a format, the twig payload may look like t
 ```json
 {
    "repository":{
-      "slug":"vtsykun-packeton",
+      "slug":"lostlink-packeton",
       "id":11,
-      "name":"vtsykun-packeton",
+      "name":"lostlink-packeton",
       "scmId":"git",
       "state":"AVAILABLE",
       "links": {
           "clone": [
-              {"href": "https://github.com/vtsykun/packeton.git"}
+              {"href": "https://github.com/lostlink/packeton.git"}
           ]
       }
    }
@@ -419,7 +419,7 @@ The customer users can only see related packages and own profile with instructio
 To authenticate composer access to repository needs add credentials globally into auth.json, for example:
 
 ```
-composer config --global --auth http-basic.pkg.okvpn.org <user> <token>
+composer config --global --auth http-basic.pkg.lostlink.net <user> <token>
 ```
 
 API Token you can found in your Profile.
@@ -450,7 +450,11 @@ php bin/console fos:user:create
 php bin/console fos:user:promote <username> ROLE_ADMIN
 ```
 
+## Authors
+
+- [@vtsykun](https://www.github.com/vtsykun)
+- [@nsouto](https://www.github.com/nsouto)
 
 LICENSE
 ------
-MIT
+[MIT](https://choosealicense.com/licenses/mit/)
