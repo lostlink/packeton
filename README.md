@@ -1,10 +1,10 @@
 Packeton - Private PHP package repository for vendors
 ======================================================
 
-[![Docker pulls](https://img.shields.io/docker/pulls/okvpn/packeton.svg?label=docker+pulls)](https://hub.docker.com/r/okvpn/packeton)
-[![Docker stars](https://img.shields.io/docker/stars/okvpn/packeton.svg?label=docker+stars)](https://hub.docker.com/r/okvpn/packeton)
-[![Docker version](https://images.microbadger.com/badges/version/okvpn/packeton.svg)](https://hub.docker.com/r/okvpn/packeton)
-[![Docker layers](https://images.microbadger.com/badges/image/okvpn/packeton.svg)](https://hub.docker.com/r/okvpn/packeton)
+[![Docker pulls](https://img.shields.io/docker/pulls/lostlink/packeton.svg?label=docker+pulls)](https://hub.docker.com/r/lostlink/packeton)
+[![Docker stars](https://img.shields.io/docker/stars/lostlink/packeton.svg?label=docker+stars)](https://hub.docker.com/r/lostlink/packeton)
+[![Docker version](https://images.microbadger.com/badges/version/lostlink/packeton.svg)](https://hub.docker.com/r/lostlink/packeton)
+[![Docker layers](https://images.microbadger.com/badges/image/lostlink/packeton.svg)](https://hub.docker.com/r/lostlink/packeton)
 
 Fork of [Packagist](https://github.com/composer/packagist). 
 The Open Source alternative of [Private Packagist for vendors](https://packagist.com), that based on [Satis](https://github.com/composer/satis) and [Packagist](https://github.com/composer/packagist).
@@ -54,7 +54,7 @@ Table of content
 
 Demo
 ----
-See our [Administration Demo](https://pkg.okvpn.org). Username/password (admin/composer)
+See our [Administration Demo](https://pkg.lostlink.net). Username/password (admin/composer)
 
 [![Demo](docs/img/demo.png)](docs/img/demo.png)
 
@@ -85,7 +85,7 @@ services:
             - .docker/ssh:/var/www/.ssh # Share here your ssh keys
         environment:
             PRIVATE_REPO_DOMAIN_LIST: bitbucket.org gitlab.com github.com
-            PACKAGIST_DIST_HOST: https://pkg.okvpn.org # Dist url to download the zip package.
+            PACKAGIST_DIST_HOST: https://pkg.lostlink.net # Dist url to download the zip package.
             DATABASE_HOST: 172.17.0.1
             DATABASE_PORT: 5432
             DATABASE_DRIVER: pdo_pgsql
